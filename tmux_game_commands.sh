@@ -13,6 +13,6 @@ function get_active_pane() {
 # invite you to a 
 # celebration!"
 function add_notice() {
-  tmux split-window -t `get_active_pane` -v -p 50 "echo \"$@\"; read"
+  tmux split-window -t `get_active_pane` -h -p 20 "echo \"$@\"; read"
 }
 

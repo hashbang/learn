@@ -1,0 +1,29 @@
+#!/bin/bash
+
+function get_active_window() {
+  tmux list-windows | grep "\* ([0-9]* panes)" | sed 's/:.*//'
+}
+
+function get_active_pane() {
+  tmux select-window -t `get_active_window`
+  tmux list-panes | grep "(active)$" | sed 's/:.*//'
+}
+
+function open_pane() {
+  tmux split-window -t $(get_active_pane) -p 80 'script -f .learn.out'
+}
+
+function wait_for() {
+  last_line=""
+  while [ "$last_line" != "$@" ] ; do
+    last_line=$(cat .learn.out | tail -n2 | head -n1 | tr -d '\r')
+    sleep 1
+  done
+}
+
+function load_lesson() {
+  clear
+  source lessons/$@.sh
+}
+
+load_lesson "1"

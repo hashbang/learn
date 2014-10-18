@@ -12,8 +12,6 @@ cat <<EOF
 
 EOF
 
-open_pane
-
 wait_for "Hello World"
 
 clear

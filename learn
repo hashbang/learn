@@ -23,6 +23,7 @@ function wait_for() {
 
 function load_lesson() {
   clear
+  open_pane
   source lessons/$@.sh
 }
 
